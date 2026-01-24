@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: investrwanda_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: kagaba
+      POSTGRES_DB: investrwanda
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./server/schema.sql:/docker-entrypoint-initdb.d/1-schema.sql
+      - ./server/migrate.sql:/docker-entrypoint-initdb.d/2-migrate.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend API Server
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: investrwanda_backend
+    restart: always
+    environment:
+      DB_USER: postgres
+      DB_HOST: postgres
+      DB_NAME: investrwanda
+      DB_PASSWORD: kagaba
+      DB_PORT: 5432
+      PORT: 4000
+      SECRET_KEY: 2d5fbee645d959d884d7df4420f973df5f943646932ed4b7f71ad16f3ed6dd63e1da44075661a56b9e355d40966659ad0e0a0b8870d5c536bac98eb035483053
+    ports:
+      - "4000:4000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+
+  # Frontend React App
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: investrwanda_frontend
+    restart: always
+    environment:
+      VITE_API_URL: http://localhost:4000/api
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  default:
+    name: investrwanda_network

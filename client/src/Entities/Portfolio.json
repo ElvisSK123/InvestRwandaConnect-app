@@ -1,0 +1,72 @@
+{
+  "name": "Portfolio",
+  "type": "object",
+  "properties": {
+    "investor_id": {
+      "type": "string",
+      "description": "Reference to investor user"
+    },
+    "investment_id": {
+      "type": "string",
+      "description": "Reference to investment"
+    },
+    "listing_id": {
+      "type": "string",
+      "description": "Reference to listing"
+    },
+    "initial_investment": {
+      "type": "number",
+      "description": "Initial investment amount"
+    },
+    "current_value": {
+      "type": "number",
+      "description": "Current portfolio value"
+    },
+    "roi_percentage": {
+      "type": "number",
+      "description": "Return on investment percentage"
+    },
+    "dividends_received": {
+      "type": "number",
+      "default": 0,
+      "description": "Total dividends received"
+    },
+    "ownership_percentage": {
+      "type": "number",
+      "description": "Percentage ownership"
+    },
+    "investment_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "last_valuation_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "exited",
+        "pending"
+      ],
+      "default": "active"
+    },
+    "exit_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "exit_value": {
+      "type": "number"
+    },
+    "performance_notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "investor_id",
+    "investment_id",
+    "listing_id",
+    "initial_investment"
+  ]
+}

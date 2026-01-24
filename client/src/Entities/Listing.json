@@ -1,0 +1,201 @@
+{
+  "name": "Listing",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Investment opportunity title"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "business",
+        "startup",
+        "real_estate",
+        "project"
+      ],
+      "description": "Type of investment"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "agriculture",
+        "technology",
+        "hospitality",
+        "manufacturing",
+        "energy",
+        "healthcare",
+        "education",
+        "finance",
+        "infrastructure",
+        "retail",
+        "other"
+      ],
+      "description": "Industry category"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description"
+    },
+    "short_description": {
+      "type": "string",
+      "description": "Brief summary for cards"
+    },
+    "asking_price": {
+      "type": "number",
+      "description": "Investment amount in USD"
+    },
+    "minimum_investment": {
+      "type": "number",
+      "description": "Minimum investment amount"
+    },
+    "location": {
+      "type": "string",
+      "description": "Location in Rwanda"
+    },
+    "district": {
+      "type": "string",
+      "enum": [
+        "Kigali",
+        "Bugesera",
+        "Gatsibo",
+        "Kayonza",
+        "Kirehe",
+        "Ngoma",
+        "Nyagatare",
+        "Rwamagana",
+        "Gasabo",
+        "Kicukiro",
+        "Nyarugenge",
+        "Burera",
+        "Gakenke",
+        "Gicumbi",
+        "Musanze",
+        "Rulindo",
+        "Gisagara",
+        "Huye",
+        "Kamonyi",
+        "Muhanga",
+        "Nyamagabe",
+        "Nyanza",
+        "Nyaruguru",
+        "Ruhango",
+        "Karongi",
+        "Ngororero",
+        "Nyabihu",
+        "Nyamasheke",
+        "Rubavu",
+        "Rusizi",
+        "Rutsiro"
+      ],
+      "description": "District in Rwanda"
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Image URLs"
+    },
+    "documents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Supporting documents"
+    },
+    "seller_id": {
+      "type": "string",
+      "description": "Reference to seller user"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "pending_review",
+        "approved",
+        "rejected",
+        "under_offer",
+        "sold",
+        "archived"
+      ],
+      "default": "draft"
+    },
+    "verification_status": {
+      "type": "string",
+      "enum": [
+        "unverified",
+        "documents_submitted",
+        "rdb_verified",
+        "fully_verified"
+      ],
+      "default": "unverified"
+    },
+    "rdb_registration_number": {
+      "type": "string",
+      "description": "RDB business registration number"
+    },
+    "rra_tin": {
+      "type": "string",
+      "description": "Rwanda Revenue Authority TIN"
+    },
+    "land_title_number": {
+      "type": "string",
+      "description": "For real estate - land title reference"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    },
+    "views_count": {
+      "type": "number",
+      "default": 0
+    },
+    "inquiries_count": {
+      "type": "number",
+      "default": 0
+    },
+    "projected_roi": {
+      "type": "number",
+      "description": "Expected ROI percentage"
+    },
+    "year_established": {
+      "type": "number",
+      "description": "Year business was established"
+    },
+    "employees": {
+      "type": "number",
+      "description": "Number of employees"
+    },
+    "annual_revenue": {
+      "type": "number",
+      "description": "Annual revenue in USD"
+    },
+    "highlights": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Key investment highlights"
+    }
+  },
+  "required": [
+    "title",
+    "type",
+    "category",
+    "description",
+    "asking_price",
+    "location"
+  ]
+}

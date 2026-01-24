@@ -1,0 +1,18 @@
+{
+  "name": "Favorite",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "Reference to user who favorited"
+    },
+    "listing_id": {
+      "type": "string",
+      "description": "Reference to favorited listing"
+    }
+  },
+  "required": [
+    "user_id",
+    "listing_id"
+  ]
+}

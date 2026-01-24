@@ -1,0 +1,142 @@
+{
+  "name": "Investment",
+  "type": "object",
+  "properties": {
+    "listing_id": {
+      "type": "string",
+      "description": "Reference to listing"
+    },
+    "investor_id": {
+      "type": "string",
+      "description": "Reference to investor user"
+    },
+    "seller_id": {
+      "type": "string",
+      "description": "Reference to seller user"
+    },
+    "amount": {
+      "type": "number",
+      "description": "Investment amount in USD"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "initiated",
+        "kyc_pending",
+        "escrow_funded",
+        "under_review",
+        "documents_pending",
+        "government_approval",
+        "legal_review",
+        "completed",
+        "cancelled",
+        "refunded"
+      ],
+      "default": "initiated"
+    },
+    "escrow_status": {
+      "type": "string",
+      "enum": [
+        "not_started",
+        "pending_deposit",
+        "funds_held",
+        "released_to_seller",
+        "refunded_to_buyer"
+      ],
+      "default": "not_started"
+    },
+    "escrow_reference": {
+      "type": "string",
+      "description": "Bank escrow reference number"
+    },
+    "payment_method": {
+      "type": "string",
+      "enum": [
+        "bank_transfer",
+        "mobile_money",
+        "international_wire"
+      ],
+      "description": "Payment method used"
+    },
+    "rdb_approval_status": {
+      "type": "string",
+      "enum": [
+        "not_required",
+        "pending",
+        "approved",
+        "rejected"
+      ],
+      "default": "pending"
+    },
+    "rdb_approval_reference": {
+      "type": "string"
+    },
+    "legal_review_status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "in_progress",
+        "approved",
+        "issues_found"
+      ],
+      "default": "pending"
+    },
+    "assigned_notary": {
+      "type": "string",
+      "description": "Assigned notary firm"
+    },
+    "assigned_lawyer": {
+      "type": "string",
+      "description": "Assigned law firm"
+    },
+    "documents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "timeline": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "event": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "completion_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "listing_id",
+    "investor_id",
+    "amount"
+  ]
+}

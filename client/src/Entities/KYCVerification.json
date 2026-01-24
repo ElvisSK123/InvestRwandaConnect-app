@@ -1,0 +1,129 @@
+{
+  "name": "KYCVerification",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "Reference to user"
+    },
+    "verification_type": {
+      "type": "string",
+      "enum": [
+        "individual",
+        "company"
+      ],
+      "description": "Type of verification"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "not_started",
+        "documents_submitted",
+        "under_review",
+        "additional_info_required",
+        "verified",
+        "rejected"
+      ],
+      "default": "not_started"
+    },
+    "full_legal_name": {
+      "type": "string"
+    },
+    "nationality": {
+      "type": "string"
+    },
+    "country_of_residence": {
+      "type": "string"
+    },
+    "id_type": {
+      "type": "string",
+      "enum": [
+        "passport",
+        "national_id",
+        "drivers_license"
+      ]
+    },
+    "id_number": {
+      "type": "string"
+    },
+    "id_document_url": {
+      "type": "string"
+    },
+    "id_expiry_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "selfie_url": {
+      "type": "string"
+    },
+    "proof_of_address_url": {
+      "type": "string"
+    },
+    "company_name": {
+      "type": "string"
+    },
+    "company_registration_number": {
+      "type": "string"
+    },
+    "company_registration_document_url": {
+      "type": "string"
+    },
+    "company_country": {
+      "type": "string"
+    },
+    "beneficial_owners": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "ownership_percentage": {
+            "type": "number"
+          },
+          "nationality": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "source_of_funds": {
+      "type": "string",
+      "enum": [
+        "employment",
+        "business_income",
+        "investments",
+        "inheritance",
+        "other"
+      ]
+    },
+    "source_of_funds_details": {
+      "type": "string"
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "default": "medium"
+    },
+    "reviewer_notes": {
+      "type": "string"
+    },
+    "verified_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expiry_date": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "required": [
+    "user_id",
+    "verification_type"
+  ]
+}
