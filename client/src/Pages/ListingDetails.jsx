@@ -78,15 +78,8 @@ export default function ListingDetails() {
   const { data: listing, isLoading } = useQuery({
     queryKey: ['listing', listingId],
     queryFn: async () => {
-      const listings = await listingService.getAll({ id: listingId });
-      if (listings.length > 0) {
-        // Increment view count
-        await listingService.update(listings[0].id, {
-          views_count: (listings[0].views_count || 0) + 1
-        });
-        return listings[0];
-      }
-      return null;
+      // Backend automatically increments view count
+      return await listingService.getById(listingId);
     },
     enabled: !!listingId
   });
@@ -98,12 +91,7 @@ export default function ListingDetails() {
     onSuccess: () => {
       setInquiryOpen(false);
       setInquiryMessage('');
-      // Update inquiries count
-      if (listing) {
-        listingService.update(listing.id, {
-          inquiries_count: (listing.inquiries_count || 0) + 1
-        });
-      }
+      queryClient.invalidateQueries({ queryKey: ['listing', listingId] });
     }
   });
 

@@ -44,10 +44,18 @@ export default function Dashboard() {
     });
   }, []);
 
+  // For Entrepreneurs: Get their own listings
   const { data: myListings = [], isLoading: listingsLoading } = useQuery({
     queryKey: ['myListings', user?.id],
     queryFn: () => listingService.getMyListings(),
-    enabled: !!user?.id && user?.role === 'entrepreneur'
+    enabled: !!user?.id && (user?.role === 'entrepreneur' || user?.role === 'seller')
+  });
+
+  // For Investors: Get approved listings from entrepreneurs to browse
+  const { data: approvedListings = [], isLoading: approvedListingsLoading } = useQuery({
+    queryKey: ['approvedListings'],
+    queryFn: () => listingService.getAll({ status: 'approved', sort: '-created_date', limit: 20 }),
+    enabled: !!user?.id && user?.role === 'investor'
   });
 
   const { data: myInvestments = [], isLoading: investmentsLoading } = useQuery({
@@ -195,17 +203,24 @@ export default function Dashboard() {
           <div className="flex items-center justify-between mb-6">
             <TabsList>
               <TabsTrigger value="overview">Overview</TabsTrigger>
-              <TabsTrigger value="listings">My Listings</TabsTrigger>
+              {user?.role === 'investor' && (
+                <TabsTrigger value="browse">Browse Opportunities</TabsTrigger>
+              )}
+              {(user?.role === 'entrepreneur' || user?.role === 'seller') && (
+                <TabsTrigger value="listings">My Listings</TabsTrigger>
+              )}
               <TabsTrigger value="investments">My Investments</TabsTrigger>
               <TabsTrigger value="inquiries">Inquiries</TabsTrigger>
             </TabsList>
 
-            <Link to={createPageUrl("ListOpportunity")}>
-              <Button className="bg-emerald-600 hover:bg-emerald-700">
-                <Plus className="w-4 h-4 mr-2" />
-                New Listing
-              </Button>
-            </Link>
+            {(user?.role === 'entrepreneur' || user?.role === 'seller') && (
+              <Link to={createPageUrl("ListOpportunity")}>
+                <Button className="bg-emerald-600 hover:bg-emerald-700">
+                  <Plus className="w-4 h-4 mr-2" />
+                  New Listing
+                </Button>
+              </Link>
+            )}
           </div>
 
           <TabsContent value="overview">
@@ -310,6 +325,77 @@ export default function Dashboard() {
             </div>
           </TabsContent>
 
+          {/* Browse Opportunities Tab - For Investors */}
+          <TabsContent value="browse">
+            <Card>
+              <CardHeader>
+                <CardTitle>Available Investment Opportunities</CardTitle>
+                <p className="text-sm text-slate-500">Browse approved business opportunities from entrepreneurs across Rwanda</p>
+              </CardHeader>
+              <CardContent className="p-6">
+                {approvedListingsLoading ? (
+                  <div className="flex justify-center py-12">
+                    <Loader2 className="w-8 h-8 animate-spin text-slate-400" />
+                  </div>
+                ) : approvedListings.length === 0 ? (
+                  <div className="text-center py-12">
+                    <Building2 className="w-16 h-16 text-slate-300 mx-auto mb-4" />
+                    <h3 className="text-lg font-semibold text-slate-900 mb-2">No opportunities available yet</h3>
+                    <p className="text-slate-500 mb-6">Check back soon for new investment opportunities</p>
+                    <Link to={createPageUrl("Marketplace")}>
+                      <Button className="bg-emerald-600 hover:bg-emerald-700">
+                        Visit Marketplace
+                      </Button>
+                    </Link>
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    {approvedListings.map((listing) => {
+                      const status = statusBadges[listing.status] || statusBadges.approved;
+                      const StatusIcon = status.icon;
+                      return (
+                        <div key={listing.id} className="flex items-center gap-4 p-4 rounded-xl border border-slate-200 hover:border-emerald-300 hover:shadow-md transition-all">
+                          <img
+                            src={listing.images?.[0] || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=100&q=80"}
+                            alt=""
+                            className="w-24 h-16 rounded-lg object-cover"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <p className="font-semibold text-slate-900 mb-1">{listing.title}</p>
+                            <p className="text-sm text-slate-500 mb-1">{listing.location}, {listing.district}</p>
+                            <div className="flex items-center gap-3 text-xs text-slate-400">
+                              <Badge variant="secondary" className="text-xs">{listing.category}</Badge>
+                              <Badge variant="outline" className="text-xs">{listing.type}</Badge>
+                              {listing.projected_roi && (
+                                <span className="flex items-center gap-1 text-emerald-600 font-medium">
+                                  <TrendingUp className="w-3 h-3" />
+                                  {listing.projected_roi}% ROI
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-sm text-slate-500 mb-1">Investment</p>
+                            <p className="text-xl font-bold text-emerald-600">${listing.asking_price?.toLocaleString()}</p>
+                            {listing.minimum_investment && (
+                              <p className="text-xs text-slate-400">Min: ${listing.minimum_investment?.toLocaleString()}</p>
+                            )}
+                          </div>
+                          <Link to={createPageUrl("ListingDetails") + `?id=${listing.id}`}>
+                            <Button className="bg-emerald-600 hover:bg-emerald-700">
+                              View Details
+                            </Button>
+                          </Link>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* My Listings Tab - For Entrepreneurs */}
           <TabsContent value="listings">
             <Card>
               <CardContent className="p-6">

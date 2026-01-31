@@ -84,7 +84,7 @@ export default function AdminPortal() {
   // Search filter
   const filteredListings = (list) => {
     if (!searchQuery) return list;
-    return list.filter(l => 
+    return list.filter(l =>
       l.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       l.category?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       l.location?.toLowerCase().includes(searchQuery.toLowerCase())
@@ -105,9 +105,9 @@ export default function AdminPortal() {
 
   const handleApproveListing = () => {
     if (!selectedListing) return;
-    
-    const verification_status = selectedListing.rdb_registration_number 
-      ? 'rdb_verified' 
+
+    const verification_status = selectedListing.rdb_registration_number
+      ? 'rdb_verified'
       : 'documents_submitted';
 
     updateListingMutation.mutate({
@@ -120,7 +120,7 @@ export default function AdminPortal() {
 
   const handleRejectListing = () => {
     if (!selectedListing) return;
-    
+
     if (!reviewNotes.trim()) {
       toast.error('Please provide a reason for rejection');
       return;
@@ -135,9 +135,9 @@ export default function AdminPortal() {
 
   const handleQuickApprove = (listing, e) => {
     e.stopPropagation();
-    
-    const verification_status = listing.rdb_registration_number 
-      ? 'rdb_verified' 
+
+    const verification_status = listing.rdb_registration_number
+      ? 'rdb_verified'
       : 'documents_submitted';
 
     updateListingMutation.mutate({
@@ -478,10 +478,10 @@ export default function AdminPortal() {
             ) : (
               <div className="grid md:grid-cols-2 gap-6">
                 {filteredListings(listings).map((listing) => (
-                  <ListingCard 
-                    key={listing.id} 
-                    listing={listing} 
-                    showActions={listing.status === 'pending_review'} 
+                  <ListingCard
+                    key={listing.id}
+                    listing={listing}
+                    showActions={listing.status === 'pending_review'}
                   />
                 ))}
               </div>
@@ -657,8 +657,8 @@ export default function AdminPortal() {
                   id="reviewNotes"
                   value={reviewNotes}
                   onChange={(e) => setReviewNotes(e.target.value)}
-                  placeholder={selectedListing.status === 'pending_review' 
-                    ? "Add notes about this listing (required for rejection)..." 
+                  placeholder={selectedListing.status === 'pending_review'
+                    ? "Add notes about this listing (required for rejection)..."
                     : "Add review notes (optional)..."}
                   rows={4}
                   className="mt-2"

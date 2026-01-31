@@ -10,10 +10,10 @@ const partners = [
 ];
 
 const stats = [
-  { value: "$127M+", label: "Total Investments", icon: CreditCard },
-  { value: "850+", label: "Verified Listings", icon: FileCheck },
-  { value: "2,500+", label: "Global Investors", icon: Users },
-  { value: "99.8%", label: "Transaction Success", icon: Shield },
+  { value: "", label: "Total Investments", icon: CreditCard },
+  { value: "", label: "Verified Listings", icon: FileCheck },
+  { value: "", label: "Global Investors", icon: Users },
+  { value: "", label: "Transaction Success", icon: Shield },
 ];
 
 export default function TrustIndicators() {

@@ -80,11 +80,21 @@ export default function ListOpportunity() {
   });
   const [uploading, setUploading] = useState(false);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-    authService.getCurrentUser().then(setUser).catch(() => {
+    authService.getCurrentUser().then((currentUser) => {
+      // Redirect investors to dashboard - only entrepreneurs/sellers can create listings
+      if (currentUser?.role === 'investor') {
+        toast.error('Only entrepreneurs can create listings. Please browse the marketplace instead.');
+        navigate(createPageUrl("Dashboard"));
+        return;
+      }
+      setUser(currentUser);
+    }).catch(() => {
       window.location.href = `/auth/login?redirect=${encodeURIComponent(window.location.href)}`;
     });
-  }, []);
+  }, [navigate]);
 
   const createMutation = useMutation({
     mutationFn: async (data) => {
@@ -111,10 +121,10 @@ export default function ListOpportunity() {
     setUploading(true);
 
     for (const file of files) {
-      const { file_url } = await integrationService.uploadFile(file);
+      const { url } = await integrationService.uploadFile(file);
       setFormData(prev => ({
         ...prev,
-        images: [...prev.images, file_url]
+        images: [...prev.images, url]
       }));
     }
     setUploading(false);
@@ -125,10 +135,10 @@ export default function ListOpportunity() {
     if (!file) return;
 
     setUploading(true);
-    const { file_url } = await integrationService.uploadFile(file);
+    const { url } = await integrationService.uploadFile(file);
     setFormData(prev => ({
       ...prev,
-      documents: [...prev.documents, { name: file.name, url: file_url, type: docType }]
+      documents: [...prev.documents, { name: file.name, url: url, type: docType }]
     }));
     setUploading(false);
   };

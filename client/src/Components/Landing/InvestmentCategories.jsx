@@ -11,56 +11,56 @@ const categories = [
   { 
     name: "Real Estate", 
     icon: Building2, 
-    count: 124, 
+    count: 0, 
     color: "emerald",
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80"
   },
   { 
     name: "Agriculture", 
     icon: Leaf, 
-    count: 89, 
+    count: 0, 
     color: "green",
     image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&q=80"
   },
   { 
     name: "Technology", 
     icon: Cpu, 
-    count: 156, 
+    count: 0, 
     color: "blue",
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=80"
   },
   { 
     name: "Hospitality", 
     icon: Hotel, 
-    count: 67, 
+    count: 0, 
     color: "amber",
     image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=400&q=80"
   },
   { 
     name: "Healthcare", 
     icon: Heart, 
-    count: 45, 
+    count: 0, 
     color: "rose",
     image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&q=80"
   },
   { 
     name: "Education", 
     icon: GraduationCap, 
-    count: 38, 
+    count: 0, 
     color: "purple",
     image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&q=80"
   },
   { 
     name: "Manufacturing", 
     icon: Factory, 
-    count: 52, 
+    count: 0, 
     color: "slate",
     image: "https://images.unsplash.com/photo-1565465295423-68c959ca3c30?w=400&q=80"
   },
   { 
     name: "Energy", 
     icon: Zap, 
-    count: 31, 
+    count: 0, 
     color: "yellow",
     image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&q=80"
   },

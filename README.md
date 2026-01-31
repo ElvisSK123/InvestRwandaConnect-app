@@ -1,1 +1,0 @@
-# InvestRwandaConnect-app

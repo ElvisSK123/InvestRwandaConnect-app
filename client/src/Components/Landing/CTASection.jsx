@@ -14,7 +14,7 @@ export default function CTASection() {
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
         }} />
       </div>
-      
+
       <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-3xl" />
       <div className="absolute bottom-10 right-10 w-48 h-48 bg-teal-400/20 rounded-full blur-3xl" />
 
@@ -40,7 +40,7 @@ export default function CTASection() {
             <br />
             Africa's Fastest Growing Economy?
           </h2>
-          
+
           <p className="text-xl text-emerald-100 mb-10 max-w-2xl mx-auto">
             Join thousands of investors who trust our platform for secure, transparent, and fully digital cross-border investments in Rwanda.
           </p>
@@ -50,11 +50,6 @@ export default function CTASection() {
               <Button size="lg" className="bg-white text-emerald-700 hover:bg-emerald-50 text-lg px-8 py-6 rounded-xl shadow-lg shadow-emerald-900/30">
                 Browse Opportunities
                 <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-            </Link>
-            <Link to={createPageUrl("ListOpportunity")}>
-              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10 text-lg px-8 py-6 rounded-xl">
-                List Your Business
               </Button>
             </Link>
           </div>

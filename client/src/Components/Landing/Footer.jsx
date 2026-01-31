@@ -38,7 +38,6 @@ export default function Footer() {
             <ul className="space-y-3">
               {[
                 { name: "Marketplace", page: "Marketplace" },
-                { name: "List Opportunity", page: "ListOpportunity" },
                 { name: "How It Works", page: "Home" },
                 { name: "About Us", page: "About" },
               ].map((link) => (
@@ -75,11 +74,11 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-emerald-500" />
-                <span>invest@investrwanda.com</span>
+                <span>kagabashimwa@gmail.com</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-emerald-500" />
-                <span>+250 788 000 000</span>
+                <span>+250 787 932 359</span>
               </li>
             </ul>
           </div>

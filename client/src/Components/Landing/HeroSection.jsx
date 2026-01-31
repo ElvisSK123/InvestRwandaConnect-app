@@ -5,6 +5,7 @@ import { ArrowRight, Shield, Globe, Building2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { motion } from "framer-motion";
+import InvestRwandaPhoto from '@/image/Invest-in-Rwanda photo.jpg';
 
 export default function HeroSection() {
   return (
@@ -28,16 +29,16 @@ export default function HeroSection() {
               <Shield className="w-4 h-4 mr-2" />
               Government-Verified Investment Platform
             </Badge>
-            
+
             <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-900 leading-tight mb-6">
               Invest in
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">
                 Rwanda's Future
               </span>
             </h1>
-            
+
             <p className="text-xl text-slate-600 mb-8 leading-relaxed max-w-xl">
-              The trusted gateway for global investors. Buy businesses, real estate, and fund startups—fully online with government-backed verification and secure escrow.
+              The trusted gateway for global investors. Buy businesses, real estate, and fund startups—fully online with verification and secure.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
@@ -47,16 +48,11 @@ export default function HeroSection() {
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
-              <Link to={createPageUrl("ListOpportunity")}>
-                <Button size="lg" variant="outline" className="text-lg px-8 py-6 rounded-xl border-2">
-                  List Your Business
-                </Button>
-              </Link>
             </div>
 
             <div className="flex items-center gap-8 pt-6 border-t border-slate-200">
               <div className="flex -space-x-3">
-                {[1,2,3,4,5].map(i => (
+                {[1, 2, 3, 4, 5].map(i => (
                   <div key={i} className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 border-2 border-white flex items-center justify-center text-white text-xs font-medium">
                     {String.fromCharCode(64 + i)}
                   </div>
@@ -64,7 +60,7 @@ export default function HeroSection() {
               </div>
               <div>
                 <p className="text-sm text-slate-500">Trusted by</p>
-                <p className="font-semibold text-slate-900">2,500+ Global Investors</p>
+                <p className="font-semibold text-slate-900">Global Investors</p>
               </div>
             </div>
           </motion.div>
@@ -76,14 +72,14 @@ export default function HeroSection() {
             className="relative"
           >
             <div className="relative">
-              <img 
-                src="https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=800&q=80" 
+              <img
+                src={InvestRwandaPhoto}
                 alt="Kigali Skyline"
                 className="rounded-3xl shadow-2xl shadow-slate-200/50"
               />
-              
+
               {/* Floating Cards */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 }}
@@ -98,7 +94,7 @@ export default function HeroSection() {
                 <p className="text-sm text-slate-500">All listings verified by Rwanda Development Board</p>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.8 }}
@@ -108,17 +104,17 @@ export default function HeroSection() {
                   <Globe className="w-5 h-5 text-amber-500" />
                   <span className="text-sm text-slate-500">Active Investors</span>
                 </div>
-                <p className="text-2xl font-bold text-slate-900">47 Countries</p>
+                <p className="text-2xl font-bold text-slate-900">Countries</p>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1 }}
                 className="absolute -bottom-6 left-1/4 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-2xl shadow-xl p-5 text-white"
               >
                 <p className="text-sm opacity-90 mb-1">Total Invested</p>
-                <p className="text-3xl font-bold">$127M+</p>
+                <p className="text-3xl font-bold"></p>
               </motion.div>
             </div>
           </motion.div>

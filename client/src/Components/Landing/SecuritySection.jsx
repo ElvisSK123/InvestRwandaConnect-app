@@ -6,12 +6,12 @@ const securityFeatures = [
   {
     icon: UserCheck,
     title: "Verified Users",
-    description: "All investors and sellers undergo comprehensive KYC verification with identity and source of funds checks."
+    description: "All investors and sellers undergo comprehensive verification with identity and source of funds checks."
   },
   {
     icon: FileCheck,
     title: "Government Registration",
-    description: "Every listing verified against RDB, RRA, and land registry databases for authenticity."
+    description: "Every listing verified against RDB, RRA, and land registry."
   },
   {
     icon: Lock,
